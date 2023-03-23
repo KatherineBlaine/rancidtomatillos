@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div>
         <h1>Rancid</h1>
-        <button onClick={this.changeView}>'Change View'</button>
+        {!this.state.main && <button onClick={this.changeView}>Home</button>}
         {this.state.main ? <Main movies={this.state.allMovies} onViewChange={this.changeView}/> : <MoviePage movie={moviePageSample}/> }
       </div>
     );
