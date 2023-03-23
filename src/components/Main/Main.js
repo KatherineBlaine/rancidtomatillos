@@ -1,17 +1,15 @@
 import React from "react";
 import Movie from "../Movie/Movie";
+import "./Main.css";
 
 const Main = (props) => {
-  console.log(props.movies.movies[0].title);
-
   const movieElements = props.movies.movies.map((movie) => {
-    return <Movie title={movie.title} />;
+    return (
+      <Movie title={movie.title} rating={movie.average_rating} key={movie.id} />
+    );
   });
 
-  return (
-    <div>{movieElements}</div>
-  )
-  
+  return <div className="movie-container">{movieElements}</div>;
 };
 
 export default Main;
