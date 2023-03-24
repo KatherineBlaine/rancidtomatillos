@@ -11,38 +11,57 @@ class App extends Component {
     this.state = {
       allMovies: [],
       main: true,
+      error: ''
     };
   }
 
   componentDidMount = () => {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('No Such Path')
+        }
+      })
       .then((data) => {
         this.setState({ allMovies: data.movies });
-      });
+      })
+      .catch((err) => {
+        this.setState({ error: err.message})
+      })
   };
 
   changeView = () => {
-    if (this.state.main === true) {
-      this.setState({ main: false });
-    } else {
-      this.setState({ main: true });
-    }
+    this.setState((prevState) => {
+      return {
+        main: !prevState.main,
+      };
+    });
   };
 
   render() {
-    return (
-      <div>
-        <h1>Rancid</h1>
-        {!this.state.main && <button onClick={this.changeView}>Home</button>}
-        {this.state.main ? (
-          <Main movies={this.state.allMovies} onViewChange={this.changeView} />
-        ) : (
-          <MoviePage movie={moviePageSample} />
-        )}
-      </div>
-    );
-  }
+    if (this.state.error === '') {
+      return (
+        <div>
+          <h1>Rancid</h1>
+          {!this.state.main && <button onClick={this.changeView}>Home</button>}
+          {this.state.main ? (
+            <Main movies={this.state.allMovies} onViewChange={this.changeView} />
+          ) : (
+            <MoviePage movie={moviePageSample} />
+            )}
+        </div>);
+    } else {
+        return (
+          <div>
+            <h1>Rancid</h1>
+            <h2>{this.state.error}, sorry!</h2>
+          </div>
+    )}
+}
 }
 
 export default App;
+
+
