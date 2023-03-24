@@ -9,32 +9,40 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      allMovies: movieData,
-      main: true
+      allMovies: [],
+      main: true,
     };
   }
 
-  changeView = () => {
-    console.log('hello')
-    if (this.state.main === true) {
-      this.setState({allMovies: movieData, main: false})
-    } else {
-      this.setState({allMovies: movieData, main: true})
-    }
-  }
+  componentDidMount = () => {
+    fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ allMovies: data.movies });
+      });
+  };
 
+  changeView = () => {
+    if (this.state.main === true) {
+      this.setState({ main: false });
+    } else {
+      this.setState({ main: true });
+    }
+  };
 
   render() {
     return (
       <div>
         <h1>Rancid</h1>
         {!this.state.main && <button onClick={this.changeView}>Home</button>}
-        {this.state.main ? <Main movies={this.state.allMovies} onViewChange={this.changeView}/> : <MoviePage movie={moviePageSample}/> }
+        {this.state.main ? (
+          <Main movies={this.state.allMovies} onViewChange={this.changeView} />
+        ) : (
+          <MoviePage movie={moviePageSample} />
+        )}
       </div>
     );
   }
 }
-
-// 
 
 export default App;

@@ -2,7 +2,6 @@ import React from "react";
 import "./Movie.css";
 
 const Movie = (props) => {
-
   return (
     <div className="movie-card" onClick={() => props.viewChange()}>
       <h3>{props.title}</h3>
