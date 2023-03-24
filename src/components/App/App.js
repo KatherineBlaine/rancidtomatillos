@@ -58,23 +58,10 @@ class App extends Component {
             <h1>Rancid</h1>
             <h2>{this.state.error}, sorry!</h2>
           </div>
-        )
-    }
-  }
+    )}
+}
 }
 
 export default App;
 
 
-
-
-
-        {/* {this.state.main && this.state.error === '' ? (
-          <Main movies={this.state.allMovies} onViewChange={this.changeView} />
-        ) : !this.state.main && this.state.error === '' ? (
-          <MoviePage movie={moviePageSample} />
-        ) : (
-        <div> 
-          <Main movies={this.state.allMovies} onViewChange={this.changeView} />
-          <h2>{this.state.error}</h2>
-        </div>) */}
