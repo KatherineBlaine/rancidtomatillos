@@ -23,11 +23,11 @@ class App extends Component {
   };
 
   changeView = () => {
-    if (this.state.main === true) {
-      this.setState({ main: false });
-    } else {
-      this.setState({ main: true });
-    }
+    this.setState((prevState) => {
+      return {
+        main: !prevState.main,
+      };
+    });
   };
 
   render() {
