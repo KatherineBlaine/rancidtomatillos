@@ -1,0 +1,16 @@
+.movie-page {
+  display: flex;
+  /* border: 2px solid red; */
+  justify-content: space-evenly;
+  width: 80%;
+  margin: 20vh auto 0;
+}
+
+.left-content img {
+  /* border: 2px solid black; */
+  width: 60%;
+}
+
+.right-content {
+  /* border: 2px solid blue; */
+}

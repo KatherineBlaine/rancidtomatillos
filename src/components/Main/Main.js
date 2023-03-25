@@ -1,13 +1,15 @@
 import React from "react";
 import Movie from "../Movie/Movie";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import "./Main.css";
 
 const Main = ({ movies, onViewChange }) => {
+  console.log(movies);
   if (movies !== []) {
     const movieElements = movies.map((movie) => {
       return (
         <Movie
+          posterImg={movie.poster_path}
           title={movie.title}
           rating={movie.average_rating}
           key={movie.id}
@@ -23,5 +25,5 @@ export default Main;
 
 Main.propTypes = {
   movies: PropTypes.array,
-  onViewChange: PropTypes.func
-}
+  onViewChange: PropTypes.func,
+};
