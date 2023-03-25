@@ -1,4 +1,13 @@
 .movie-card {
-  border: 1px solid black;
   margin: 20px;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.movie-card:hover {
+  scale: 1.05;
+}
+
+.poster-img {
+  width: 100%;
 }
