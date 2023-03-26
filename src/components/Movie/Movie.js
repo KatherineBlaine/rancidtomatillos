@@ -15,6 +15,7 @@ const Movie = ({ posterImg, title, rating, viewChange }) => {
 export default Movie;
 
 Movie.propTypes = {
+  posterImg: PropTypes.string,
   title: PropTypes.string,
   rating: PropTypes.number,
   viewChange: PropTypes.func,
