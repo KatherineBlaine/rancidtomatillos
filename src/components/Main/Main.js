@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import "./Main.css";
 
 const Main = ({ movies, onViewChange }) => {
-  console.log(movies);
   if (movies !== []) {
     const movieElements = movies.map((movie) => {
       return (

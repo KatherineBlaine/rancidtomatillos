@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import movieData from "../../movieData";
 import MoviePage from "../MoviePage/MoviePage";
 import Main from "../Main/Main.js";
 import moviePageSample from "../../moviePageSample";
@@ -11,7 +10,8 @@ class App extends Component {
     this.state = {
       allMovies: [],
       main: true,
-      error: ''
+      error: '',
+      isLoading: true
     };
   }
 
@@ -25,7 +25,7 @@ class App extends Component {
         }
       })
       .then((data) => {
-        this.setState({ allMovies: data.movies });
+        this.setState({ allMovies: data.movies, isLoading: false});
       })
       .catch((err) => {
         this.setState({ error: err.message})
@@ -41,27 +41,21 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.error === '') {
-      return (
-        <div>
-          <h1>Rancid</h1>
-          {!this.state.main && <button onClick={this.changeView}>Home</button>}
-          {this.state.main ? (
-            <Main movies={this.state.allMovies} onViewChange={this.changeView} />
-          ) : (
-            <MoviePage movie={moviePageSample} />
-            )}
-        </div>);
-    } else {
-        return (
-          <div>
-            <h1>Rancid</h1>
-            <h2>{this.state.error}, sorry!</h2>
-          </div>
-    )}
-}
+    return (
+      <div>
+        <h1>Rancid Tomatillos</h1>
+        {!this.state.main && <button onClick={this.changeView}>Home</button>}
+
+        {this.state.main ? (
+          <Main movies={this.state.allMovies} onViewChange={this.changeView} />
+        ) : (
+          <MoviePage movie={moviePageSample} />
+        )}
+
+        {this.state.isLoading && this.state.error === '' ? <h2>Loading</h2>
+        : this.state.error !== '' && <h2>{this.state.error}, sorry!</h2>}
+      </div>);
+  }
 }
 
 export default App;
-
-
