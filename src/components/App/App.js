@@ -44,10 +44,15 @@ class App extends Component {
     })
   }
 
+  resetSelected = () => {
+    this.setState({ selectedMovie: null })
+  }
+
   render() {
     return (
       <div>
         <h1>Rancid Tomatillos</h1>
+        
         <Switch>
           <Route
             exact
@@ -66,7 +71,10 @@ class App extends Component {
           
               // const selectedMovie = this.state.allMovies.find(movie => movie.id === parseInt(match.params.movieID))
               return (
-                <MoviePage movie={this.state.selectedMovie} />
+                <div>
+                  <Link to="/" className="home-btn" onClick={this.resetSelected}>Go Back</Link>
+                  <MoviePage movie={this.state.selectedMovie} />
+                </div>
               )
             }}
           />

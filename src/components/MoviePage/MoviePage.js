@@ -9,15 +9,23 @@ const MoviePage = ({movie}) => {
     console.log(movie.movie.poster_path)
     return (
       <main>
-        <Link to="/" className="home-btn">
-          Go Back
-        </Link>
+
         <div className="movie-page">
           <div className="left-content">
-            <p>This is the ID: {movie.movie.id}</p>
+            <h2>{movie.movie.title}</h2>
             <img src={movie.movie.poster_path} alt="Movie poster"></img>
+            <img src={movie.movie.backdrop_path} alt="Movie poster"></img>
           </div>
-          <div className="right-content"></div>
+          <div className="right-content">
+          <p>{movie.movie.release_date}</p>
+            <p>{movie.movie.overview}</p>
+            <p>{movie.movie.genres}</p>
+            <p>{movie.movie.budget}</p>
+            <p>{movie.movie.revenue}</p>
+            <p>{movie.movie.runtime}</p>
+            <p>{movie.movie.tagline}</p>
+            <p>{movie.movie.average_rating}</p>
+          </div>
         </div>
       </main>
     );
