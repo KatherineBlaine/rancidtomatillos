@@ -57,7 +57,12 @@ class App extends Component {
           <Route
             exact
             path="/:movieID"
-            render={() => <MoviePage movie={this.state.allMovies} />}
+            render={( { match} ) => {
+              const selectedMovie = this.state.allMovies.find(movie => movie.id === parseInt(match.params.movieID))
+              return (
+                <MoviePage movie={selectedMovie} />
+              )
+            }}
           />
           <Route exact path="*" render={() => <NoMatch />} />
         </Switch>
@@ -73,6 +78,8 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;
 
