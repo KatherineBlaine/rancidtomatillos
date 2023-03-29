@@ -4,6 +4,7 @@ import MoviePage from "../MoviePage/MoviePage";
 import Main from "../Main/Main.js";
 import moviePageSample from "../../moviePageSample";
 import { Switch, Link, Route } from "react-router-dom";
+import NoMatch from "../NoMatch";
 
 class App extends Component {
   constructor() {
@@ -47,26 +48,35 @@ class App extends Component {
     return (
       <div>
         <h1>Rancid Tomatillos</h1>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <Main
-              movies={this.state.allMovies}
-              onViewChange={this.changeView}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/:movieID"
-          render={() => (
-            <MoviePage
-              movie={this.state.allMovies}
-              movieDetails={this.getMovieDetails}
-            />
-          )}
-        />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Main
+                movies={this.state.allMovies}
+                onViewChange={this.changeView}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/:movieID"
+            render={() => (
+              <MoviePage
+                movie={this.state.allMovies}
+                movieDetails={this.getMovieDetails}
+              />
+            )}
+          />
+          <Route exact path="*" render={() => <NoMatch />} />
+        </Switch>
+
+        {this.state.isLoading && this.state.error === "" ? (
+          <h2 className="loading-text">Loading...</h2>
+        ) : (
+          this.state.error !== "" && <h2 className="error-path-text">{this.state.error}, sorry!</h2>
+        )}
       </div>
     );
   }

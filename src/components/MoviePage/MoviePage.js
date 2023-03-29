@@ -13,7 +13,9 @@ const MoviePage = ({ movie, movieDetails }) => {
 
   return (
     <main>
-      <Link to="/">Go Back</Link>
+      <Link to="/" className="home-btn">
+        Go Back
+      </Link>
       <div className="movie-page">
         <div className="left-content">
           <p>This is the ID: {getSpecificMovie.id}</p>

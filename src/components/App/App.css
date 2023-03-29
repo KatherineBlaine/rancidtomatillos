@@ -2,3 +2,21 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.loading-text {
+  text-align: center;
+  font-size: 2rem;
+  margin: 20vh;
+}
+
+.no-match-text {
+  text-align: center;
+  font-size: 2rem;
+  margin: 20vh;
+}
+
+.error-path-text {
+  text-align: center;
+  font-size: 2rem;
+  margin: 20vh;
+}
