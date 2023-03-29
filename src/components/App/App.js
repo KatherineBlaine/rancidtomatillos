@@ -57,7 +57,7 @@ class App extends Component {
           <Route
             exact
             path="/:movieID"
-            render={() => <MoviePage movie={moviePageSample} />}
+            render={() => <MoviePage movie={this.state.allMovies} />}
           />
           <Route exact path="*" render={() => <NoMatch />} />
         </Switch>
