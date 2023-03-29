@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Movie = ({ posterImg, title, rating, id, viewChange }) => {
   return (
-    <Link to={`/${id}`}>
+    <Link key={id} to={`/${id}`}>
       <div className="movie-card" id={id} onClick={() => viewChange(id, title)}>
         <img className="poster-img" src={posterImg} alt="Movie poster"></img>
         <h3>{title}</h3>
