@@ -34,14 +34,9 @@ class App extends Component {
       });
   };
 
-  changeView = (movieId, movieTitle) => {
+  changeView = (movieId) => {
     console.log("Movie Clicked:", movieId);
-    // alert(`${movieTitle} was clicked`)
     return movieId;
-  };
-
-  getMovieDetails = (id, title, rating) => {
-    this.changeView(id);
   };
 
   render() {
@@ -62,12 +57,7 @@ class App extends Component {
           <Route
             exact
             path="/:movieID"
-            render={() => (
-              <MoviePage
-                movie={this.state.allMovies}
-                movieDetails={this.getMovieDetails}
-              />
-            )}
+            render={() => <MoviePage movie={moviePageSample} />}
           />
           <Route exact path="*" render={() => <NoMatch />} />
         </Switch>
@@ -75,7 +65,9 @@ class App extends Component {
         {this.state.isLoading && this.state.error === "" ? (
           <h2 className="loading-text">Loading...</h2>
         ) : (
-          this.state.error !== "" && <h2 className="error-path-text">{this.state.error}, sorry!</h2>
+          this.state.error !== "" && (
+            <h2 className="error-path-text">{this.state.error}, sorry!</h2>
+          )
         )}
       </div>
     );
