@@ -1,14 +1,17 @@
 import React from "react";
 import "./Movie.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const Movie = ({ posterImg, title, rating, viewChange }) => {
+const Movie = ({ posterImg, title, rating, id, viewChange }) => {
   return (
-    <div className="movie-card" onClick={viewChange}>
-      <img className="poster-img" src={posterImg} alt="Movie poster"></img>
-      <h3>{title}</h3>
-      <p>Rating: {rating}</p>
-    </div>
+    <Link to={`/${id}`}>
+      <div className="movie-card" id={id} onClick={() => viewChange(id, title)}>
+        <img className="poster-img" src={posterImg} alt="Movie poster"></img>
+        <h3>{title}</h3>
+        <p>Rating: {rating}</p>
+      </div>
+    </Link>
   );
 };
 
