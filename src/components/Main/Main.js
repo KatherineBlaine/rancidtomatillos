@@ -12,6 +12,7 @@ const Main = ({ movies, onViewChange }) => {
           title={movie.title}
           rating={movie.average_rating}
           key={movie.id}
+          id={movie.id}
           viewChange={onViewChange}
         />
       );
