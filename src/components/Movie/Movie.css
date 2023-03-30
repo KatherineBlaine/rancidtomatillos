@@ -1,13 +1,19 @@
 .movie-card {
-  margin: 20px;
+  margin: 10px 15px;
   cursor: pointer;
   transition: all ease-in-out 0.2s;
+  color: #fff;
 }
 
 .movie-card:hover {
   scale: 1.05;
 }
 
+.movie-title {
+  margin: 10px 0 5px 0;
+}
+
 .poster-img {
   width: 100%;
+  border-radius: 8px;
 }

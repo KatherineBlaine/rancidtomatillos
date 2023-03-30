@@ -8,7 +8,7 @@ const Movie = ({ posterImg, title, rating, id, selectMovie }) => {
     <Link key={id} to={`/${id}`}>
       <div className="movie-card" id={id} onClick={() => selectMovie(id)}>
         <img className="poster-img" src={posterImg} alt="Movie poster"></img>
-        <h3>{title}</h3>
+        <h3 className="movie-title">{title}</h3>
         <p>Rating: {rating}</p>
       </div>
     </Link>
