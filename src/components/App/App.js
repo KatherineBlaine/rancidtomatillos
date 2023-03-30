@@ -5,8 +5,10 @@ import Main from "../Main/Main.js";
 import moviePageSample from "../../moviePageSample";
 import { Switch, Link, Route } from "react-router-dom";
 import NoMatch from "../NoMatch";
+import Form from "../Form/Form";
 import Header from "../Header/Header";
 import "./Media-queries.css";
+
 
 class App extends Component {
   constructor() {
@@ -16,7 +18,7 @@ class App extends Component {
       main: true,
       error: "",
       isLoading: true,
-      selectedMovie: null,
+      selectedMovie: null
     };
   }
 
@@ -40,45 +42,46 @@ class App extends Component {
   selectMovie = (id) => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({ selectedMovie: data });
-      });
-  };
+      .then(data => {
+        console.log(data)
+        this.setState({ selectedMovie: data })
+    })
+  }
 
   resetSelected = () => {
-    this.setState({ selectedMovie: null });
-  };
+    this.setState({ selectedMovie: null })
+  }
+
+  searchMovies = (query) => {
+    const filteredMovies = this.state.allMovies.filter(movie => movie.title === query)
+    this.setState({ allMovies: filteredMovies })
+  }
 
   render() {
     return (
-      <main className="main-content">
-        <Header />
+      <div>
+        <Header search={this.searchMovies}/>
         <Switch>
           <Route
             exact
             path="/"
             render={() => (
-              <Main movies={this.state.allMovies} select={this.selectMovie} />
+              <Main
+                movies={this.state.allMovies}
+                select={this.selectMovie}
+              />
             )}
           />
           <Route
             exact
             path="/:movieID"
             render={() => {
-              // const selectedMovie = this.state.allMovies.find(movie => movie.id === parseInt(match.params.movieID))
               return (
                 <div>
-                  <Link
-                    to="/"
-                    className="home-btn"
-                    onClick={this.resetSelected}
-                  >
-                    Go Back
-                  </Link>
+                  <Link to="/" className="home-btn" onClick={this.resetSelected}>Go Back</Link>
                   <MoviePage movie={this.state.selectedMovie} />
                 </div>
-              );
+              )
             }}
           />
           <Route exact path="*" render={() => <NoMatch />} />
@@ -91,10 +94,12 @@ class App extends Component {
             <h2 className="error-path-text">{this.state.error}, sorry!</h2>
           )
         )}
-      </main>
+      </div>
     );
   }
 }
+
+
 
 export default App;
 
