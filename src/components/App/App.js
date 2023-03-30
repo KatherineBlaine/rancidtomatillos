@@ -6,6 +6,7 @@ import moviePageSample from "../../moviePageSample";
 import { Switch, Link, Route } from "react-router-dom";
 import NoMatch from "../NoMatch";
 import Header from "../Header/Header";
+import "./Media-queries.css";
 
 class App extends Component {
   constructor() {
@@ -53,7 +54,6 @@ class App extends Component {
     return (
       <main className="main-content">
         <Header />
-
         <Switch>
           <Route
             exact
