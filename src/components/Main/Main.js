@@ -3,7 +3,7 @@ import Movie from "../Movie/Movie";
 import PropTypes from "prop-types";
 import "./Main.css";
 
-const Main = ({ movies, onViewChange }) => {
+const Main = ({ movies, select }) => {
   if (movies !== []) {
     const movieElements = movies.map((movie) => {
       return (
@@ -13,7 +13,7 @@ const Main = ({ movies, onViewChange }) => {
           rating={movie.average_rating}
           key={movie.id}
           id={movie.id}
-          viewChange={onViewChange}
+          selectMovie={select}
         />
       );
     });

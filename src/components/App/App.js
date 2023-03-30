@@ -14,6 +14,7 @@ class App extends Component {
       main: true,
       error: "",
       isLoading: true,
+      selectedMovie: null
     };
   }
 
@@ -34,15 +35,24 @@ class App extends Component {
       });
   };
 
-  changeView = (movieId) => {
-    console.log("Movie Clicked:", movieId);
-    return movieId;
-  };
+  selectMovie = (id) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then((response) => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({ selectedMovie: data })
+    })
+  }
+
+  resetSelected = () => {
+    this.setState({ selectedMovie: null })
+  }
 
   render() {
     return (
       <div>
         <h1>Rancid Tomatillos</h1>
+        
         <Switch>
           <Route
             exact
@@ -50,14 +60,23 @@ class App extends Component {
             render={() => (
               <Main
                 movies={this.state.allMovies}
-                onViewChange={this.changeView}
+                select={this.selectMovie}
               />
             )}
           />
           <Route
             exact
             path="/:movieID"
-            render={() => <MoviePage movie={this.state.allMovies} />}
+            render={() => {
+          
+              // const selectedMovie = this.state.allMovies.find(movie => movie.id === parseInt(match.params.movieID))
+              return (
+                <div>
+                  <Link to="/" className="home-btn" onClick={this.resetSelected}>Go Back</Link>
+                  <MoviePage movie={this.state.selectedMovie} />
+                </div>
+              )
+            }}
           />
           <Route exact path="*" render={() => <NoMatch />} />
         </Switch>
@@ -73,6 +92,8 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;
 
