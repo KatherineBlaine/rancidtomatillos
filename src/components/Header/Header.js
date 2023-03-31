@@ -1,14 +1,11 @@
 import "./Header.css";
+import Form from "../Form/Form";
 
-const Header = () => {
+const Header = ({ search }) => {
   return (
     <div className="header">
       <h1>Rancid Tomatillos</h1>
-      <input
-        className="search-input"
-        type="text"
-        placeholder="Search for a movie"
-      />
+      <Form search={search}/>
     </div>
   );
 };
