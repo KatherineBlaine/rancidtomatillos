@@ -4,7 +4,6 @@ import "./MoviePage.css";
 import { Link, useParams } from "react-router-dom";
 
 const MoviePage = ({ movie }) => {
-  console.log(movie);
   if (movie !== null) {
     console.log(movie.movie.poster_path);
     return (
@@ -12,7 +11,6 @@ const MoviePage = ({ movie }) => {
         <div className="movie-page">
           <div className="left-content">
             <img src={movie.movie.poster_path} alt="Movie poster"></img>
-            {/* <img src={movie.movie.backdrop_path} alt="Movie poster"></img> */}
           </div>
           <div className="right-content">
             <h2>{movie.movie.title}</h2>
