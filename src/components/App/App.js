@@ -14,6 +14,7 @@ class App extends Component {
     super();
     this.state = {
       allMovies: [],
+      filteredMovies: [],
       main: true,
       error: "",
       isLoading: true,
@@ -22,6 +23,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    // console.log('component mounted')
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
       .then((response) => {
         if (response.ok) {
@@ -31,7 +33,7 @@ class App extends Component {
         }
       })
       .then((data) => {
-        this.setState({ allMovies: data.movies, isLoading: false });
+        this.setState({ allMovies: data.movies, isLoading: false, filteredMovies: data.movies});
       })
       .catch((err) => {
         this.setState({ error: err.message });
@@ -56,14 +58,14 @@ class App extends Component {
     const filteredMovies = this.state.allMovies.filter((movie) =>
       movie.title.toLowerCase().includes(value.toLowerCase())
     );
-    this.setState({ allMovies: [...filteredMovies] });
+    console.log(filteredMovies)
+    this.setState({ filteredMovies: [...filteredMovies] });
   };
 
-  resetSearch = (e) => {
-    // console.log("Clicked");
-    // console.log(this.state.allMovies);
+  resetSearch = () => {
     document.getElementById('search-field').value = ''
     this.componentDidMount();
+
   };
 
   render() {
@@ -75,7 +77,10 @@ class App extends Component {
             exact
             path="/"
             render={() => (
-              <Main movies={this.state.allMovies} select={this.selectMovie} />
+              <Main movies={this.state.filteredMovies} select={this.selectMovie} /> 
+              // this.state.filteredMovies !== [] ? <Main movies={this.state.filteredMovies} select={this.selectMovie} /> :
+              // <Main movies={this.state.allMovies} select={this.selectMovie} />
+
             )}
           />
           <Route
