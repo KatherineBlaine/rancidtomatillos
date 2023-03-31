@@ -10,7 +10,7 @@ const Form = ({ search, resetSearch }) => {
         className="search-input"
         onChange={search}
       ></input>
-       <button onClick={() => resetSearch()}>Reset Search</button>
+       <button onClick={resetSearch}>Reset Search</button>
     </div>
   );
 };

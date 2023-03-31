@@ -59,9 +59,10 @@ class App extends Component {
     this.setState({ allMovies: [...filteredMovies] });
   };
 
-  resetSearch = () => {
-    console.log("Clicked");
-    console.log(this.state.allMovies);
+  resetSearch = (e) => {
+    // console.log("Clicked");
+    // console.log(this.state.allMovies);
+    document.getElementById('search-field').value = ''
     this.componentDidMount();
   };
 
