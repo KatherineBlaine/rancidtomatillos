@@ -9,7 +9,6 @@ import Form from "../Form/Form";
 import Header from "../Header/Header";
 import "./Media-queries.css";
 
-
 class App extends Component {
   constructor() {
     super();
@@ -18,7 +17,7 @@ class App extends Component {
       main: true,
       error: "",
       isLoading: true,
-      selectedMovie: null
+      selectedMovie: null,
     };
   }
 
@@ -42,34 +41,42 @@ class App extends Component {
   selectMovie = (id) => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({ selectedMovie: data })
-    })
-  }
+      .then((data) => {
+        console.log(data);
+        this.setState({ selectedMovie: data });
+      });
+  };
 
   resetSelected = () => {
-    this.setState({ selectedMovie: null })
-  }
+    this.setState({ selectedMovie: null });
+  };
 
-  searchMovies = (query) => {
-    const filteredMovies = this.state.allMovies.filter(movie => movie.title === query)
-    this.setState({ allMovies: filteredMovies })
-  }
+  searchMovies = (e) => {
+    const value = e.target.value;
+    const filteredMovies = this.state.allMovies.filter((movie) =>
+      movie.title.toLowerCase().includes(value.toLowerCase())
+    );
+    this.setState({ allMovies: [...filteredMovies] });
+  };
+
+  resetSearch = () => {
+    console.log("Clicked");
+    console.log(this.state.allMovies);
+    this.setState({ allMovies: [...this.state.allMovies] });
+    return this.state.allMovies;
+  };
 
   render() {
     return (
       <div>
-        <Header search={this.searchMovies}/>
+        <Header search={this.searchMovies} />
+        <button onClick={this.resetSearch}>Reset Search</button>
         <Switch>
           <Route
             exact
             path="/"
             render={() => (
-              <Main
-                movies={this.state.allMovies}
-                select={this.selectMovie}
-              />
+              <Main movies={this.state.allMovies} select={this.selectMovie} />
             )}
           />
           <Route
@@ -78,15 +85,20 @@ class App extends Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/" className="home-btn" onClick={this.resetSelected}>Go Back</Link>
+                  <Link
+                    to="/"
+                    className="home-btn"
+                    onClick={this.resetSelected}
+                  >
+                    Go Back
+                  </Link>
                   <MoviePage movie={this.state.selectedMovie} />
                 </div>
-              )
+              );
             }}
           />
           <Route exact path="*" render={() => <NoMatch />} />
         </Switch>
-
         {this.state.isLoading && this.state.error === "" ? (
           <h2 className="loading-text">Loading...</h2>
         ) : (
@@ -99,22 +111,4 @@ class App extends Component {
   }
 }
 
-
-
 export default App;
-
-// Old Code (Conditional Rendering)
-
-// {!this.state.main && <button onClick={this.changeView}>Home</button>}
-
-//         {this.state.main ? (
-//           <Main movies={this.state.allMovies} onViewChange={this.changeView} />
-//         ) : (
-//           <MoviePage movie={moviePageSample} />
-//         )}
-
-//         {this.state.isLoading && this.state.error === "" ? (
-//           <h2>Loading</h2>
-//         ) : (
-//           this.state.error !== "" && <h2>{this.state.error}, sorry!</h2>
-//         )}
