@@ -62,15 +62,13 @@ class App extends Component {
   resetSearch = () => {
     console.log("Clicked");
     console.log(this.state.allMovies);
-    this.setState({ allMovies: [...this.state.allMovies] });
-    return this.state.allMovies;
+    this.componentDidMount();
   };
 
   render() {
     return (
       <div>
-        <Header search={this.searchMovies} />
-        <button onClick={this.resetSearch}>Reset Search</button>
+        <Header search={this.searchMovies} resetSearch={this.resetSearch}/>
         <Switch>
           <Route
             exact
