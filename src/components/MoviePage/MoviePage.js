@@ -7,11 +7,24 @@ const MoviePage = ({ movie, movieTrailer }) => {
   if (movie !== null) {
     const filteredVideo = movieTrailer.videos.filter(
       (movie) => movie.type === "Trailer"
-    );
-    console.log("Filtered Video!!!!!", filteredVideo[0]);
+    )[0].key;
+    console.log("Filtered Video!!!!!", filteredVideo);
 
     return (
       <main>
+        <div className="trailer-container">
+          <iframe
+            className="movie-trailer"
+            title={movie.movie.title}
+            width="620"
+            height="420"
+            src={`https://www.youtube.com/embed/${
+              movieTrailer.videos.filter((movie) => movie.type === "Trailer")[0]
+                .key
+            }`}
+            alt="Movie trailer"
+          ></iframe>
+        </div>
         <div className="movie-page">
           <div className="left-content">
             <img src={movie.movie.poster_path} alt="Movie poster"></img>
@@ -46,13 +59,6 @@ const MoviePage = ({ movie, movieTrailer }) => {
                 <p>{movie.movie.average_rating}/10</p>
               </div>
             </div>
-
-            <iframe
-              width="320"
-              height="240"
-              src="https://www.youtube.com/embed/mkomfZHG5q4"
-              alt="Movie trailer"
-            ></iframe>
           </div>
         </div>
       </main>

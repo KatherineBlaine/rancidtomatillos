@@ -50,3 +50,12 @@
 .tagline {
   margin: 0 0 13px;
 }
+
+.trailer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.movie-trailer {
+  margin-top: 8vh;
+}
