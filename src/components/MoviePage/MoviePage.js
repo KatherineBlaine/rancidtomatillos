@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 import "./MoviePage.css";
 import { Link, useParams } from "react-router-dom";
 
-const MoviePage = ({ movie }) => {
+const MoviePage = ({ movie, movieTrailer }) => {
   if (movie !== null) {
-    console.log(movie.movie.poster_path);
+    const filteredVideo = movieTrailer.videos.filter(
+      (movie) => movie.type === "Trailer"
+    );
+    console.log("Filtered Video!!!!!", filteredVideo[0]);
+
     return (
       <main>
         <div className="movie-page">
@@ -42,6 +46,13 @@ const MoviePage = ({ movie }) => {
                 <p>{movie.movie.average_rating}/10</p>
               </div>
             </div>
+
+            <iframe
+              width="320"
+              height="240"
+              src="https://www.youtube.com/embed/mkomfZHG5q4"
+              alt="Movie trailer"
+            ></iframe>
           </div>
         </div>
       </main>

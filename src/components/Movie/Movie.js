@@ -3,10 +3,17 @@ import "./Movie.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Movie = ({ posterImg, title, rating, id, selectMovie }) => {
+const Movie = ({ posterImg, title, rating, id, selectMovie, selectVideo }) => {
   return (
     <Link key={id} to={`/${id}`}>
-      <div className="movie-card" id={id} onClick={() => selectMovie(id)}>
+      <div
+        className="movie-card"
+        id={id}
+        onClick={() => {
+          selectMovie(id);
+          selectVideo(id);
+        }}
+      >
         <img className="poster-img" src={posterImg} alt="Movie poster"></img>
         <h3 className="movie-title">{title}</h3>
         <p>Rating: {rating}</p>
