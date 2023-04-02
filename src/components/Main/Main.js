@@ -3,7 +3,7 @@ import Movie from "../Movie/Movie";
 import PropTypes from "prop-types";
 import "./Main.css";
 
-const Main = ({ movies, select }) => {
+const Main = ({ movies, select, videoMethod }) => {
   if (movies !== []) {
     const movieElements = movies.map((movie) => {
       return (
@@ -14,6 +14,7 @@ const Main = ({ movies, select }) => {
           key={movie.id}
           id={movie.id}
           selectMovie={select}
+          selectVideo={videoMethod}
         />
       );
     });

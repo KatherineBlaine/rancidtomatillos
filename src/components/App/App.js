@@ -19,11 +19,11 @@ class App extends Component {
       error: "",
       isLoading: true,
       selectedMovie: null,
+      movieVideo: null,
     };
   }
 
   componentDidMount = () => {
-    // console.log('component mounted')
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
       .then((response) => {
         if (response.ok) {
@@ -33,7 +33,11 @@ class App extends Component {
         }
       })
       .then((data) => {
-        this.setState({ allMovies: data.movies, isLoading: false, filteredMovies: data.movies});
+        this.setState({
+          allMovies: data.movies,
+          isLoading: false,
+          filteredMovies: data.movies,
+        });
       })
       .catch((err) => {
         this.setState({ error: err.message });
@@ -44,8 +48,16 @@ class App extends Component {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         this.setState({ selectedMovie: data });
+      });
+  };
+
+  getMovieVideo = (id) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ movieVideo: data });
       });
   };
 
@@ -58,29 +70,31 @@ class App extends Component {
     const filteredMovies = this.state.allMovies.filter((movie) =>
       movie.title.toLowerCase().includes(value.toLowerCase())
     );
-    console.log(filteredMovies)
+    console.log(filteredMovies);
     this.setState({ filteredMovies: [...filteredMovies] });
   };
 
   resetSearch = () => {
-    document.getElementById('search-field').value = ''
+    document.getElementById("search-field").value = "";
     this.componentDidMount();
-
   };
 
   render() {
     return (
       <div>
-        <Header search={this.searchMovies} resetSearch={this.resetSearch}/>
+        <Header search={this.searchMovies} resetSearch={this.resetSearch} />
         <Switch>
           <Route
             exact
             path="/"
             render={() => (
-              <Main movies={this.state.filteredMovies} select={this.selectMovie} /> 
+              <Main
+                movies={this.state.filteredMovies}
+                select={this.selectMovie}
+                videoMethod={this.getMovieVideo}
+              />
               // this.state.filteredMovies !== [] ? <Main movies={this.state.filteredMovies} select={this.selectMovie} /> :
               // <Main movies={this.state.allMovies} select={this.selectMovie} />
-
             )}
           />
           <Route
@@ -96,7 +110,7 @@ class App extends Component {
                   >
                     Go Back
                   </Link>
-                  <MoviePage movie={this.state.selectedMovie} />
+                  <MoviePage movie={this.state.selectedMovie} movieTrailer={this.state.movieVideo}/>
                 </div>
               );
             }}
