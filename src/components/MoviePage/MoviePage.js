@@ -59,12 +59,25 @@ const MoviePage = ({ movie }) => {
                 <p>{movie.movie.average_rating}/10</p>
               </div>
             </div>
+            <div className="trailer-container">
+          <iframe
+            className="movie-trailer"
+            title={movie.movie.title}
+            width="620"
+            height="420"
+            src={`https://www.youtube.com/embed/${
+              movieTrailer.videos.filter((movie) => movie.type === "Trailer")[0]
+                .key
+            }`}
+            alt="Movie trailer"
+          ></iframe>
+        </div>
           </div>
         </div>
       </main>
     );
-  }
-};
+  };
+}
 
 export default MoviePage;
 

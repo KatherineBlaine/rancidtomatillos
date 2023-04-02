@@ -47,8 +47,13 @@ class App extends Component {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         this.setState({ selectedMovie: data });
-      });
+        console.log("Selected movie", this.state.selectedMovie)
+      })
+      .then((id) => {
+        this.getMovieVideo(id)
+      })
   };
 
   // getMovieVideo = (id) => {

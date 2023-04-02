@@ -14,9 +14,9 @@ const Movie = ({ posterImg, title, rating, id, selectMovie }) => {
           // selectVideo(id);
         }}
       >
-        <img className="poster-img" src={posterImg} alt="Movie poster"></img>
-        <h3 className="movie-title">{title}</h3>
-        <p>Rating: {rating}</p>
+        <img className="poster-img" id={`${title} img`} src={posterImg} alt="Movie poster"></img>
+        <h3 className="movie-title" id={`${title} title`}>{title}</h3>
+        <p id={`${title} rating`}>Rating: {rating}</p>
       </div>
     </Link>
   );
