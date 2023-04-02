@@ -2,7 +2,19 @@
 Rancid Tomatillos is a react application that allows users to view a variety of movies and be able to see specific details such as Ratings, Description, Budget, Revenue, and trailers.
 
 ### Goals 
+- Gain competency with React fundamentals
+- Learn how to test React components & asynchronous JS
+- Practice refactoring
+- Create a multi-page UX using router
 
+### Technologies used: 
+ - React
+ - Router
+ - Cypress 
+ - Webpack
+ - Javascript 
+ - HTML/CSS
+ - Node Package Manager
 
 
 ### Preview of the App
