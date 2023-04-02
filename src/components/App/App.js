@@ -19,7 +19,6 @@ class App extends Component {
       error: "",
       isLoading: true,
       selectedMovie: null,
-      movieVideo: null,
     };
   }
 
@@ -52,17 +51,18 @@ class App extends Component {
       });
   };
 
-  getMovieVideo = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({ movieVideo: data });
-      });
-  };
+  // getMovieVideo = (id) => {
+  //   fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       this.setState({ movieVideo: data });
+  //     });
+  // };
 
   resetSelected = () => {
     this.setState({ selectedMovie: null });
+    // console.log('Hello')
   };
 
   searchMovies = (e) => {
@@ -91,7 +91,7 @@ class App extends Component {
               <Main
                 movies={this.state.filteredMovies}
                 select={this.selectMovie}
-                videoMethod={this.getMovieVideo}
+                // videoMethod={this.getMovieVideo}
               />
               // this.state.filteredMovies !== [] ? <Main movies={this.state.filteredMovies} select={this.selectMovie} /> :
               // <Main movies={this.state.allMovies} select={this.selectMovie} />
@@ -110,7 +110,7 @@ class App extends Component {
                   >
                     Go Back
                   </Link>
-                  <MoviePage movie={this.state.selectedMovie} movieTrailer={this.state.movieVideo}/>
+                  <MoviePage movie={this.state.selectedMovie}/>
                 </div>
               );
             }}
