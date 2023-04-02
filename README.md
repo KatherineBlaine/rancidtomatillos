@@ -6,6 +6,7 @@ Rancid Tomatillos is a react application that allows users to view a variety of 
 
 
 ### Preview of the App
+[Rancid Tomatillos](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmFmZTg0NzVkNjQ2ZWRmYTBlNTM2MzdhMjM1N2E5ZWQ4NjU1YzE3YSZjdD1n/ddIE5ustSMonTRn7SU/giphy.gif)
 
 ### Contributors 
 - Katherine Blaine [LinkedIn](https://www.linkedin.com/in/katherinekblaine/), [Github](https://github.com/KatherineBlaine)<br>
