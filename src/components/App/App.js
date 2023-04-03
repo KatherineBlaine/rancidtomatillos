@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import MoviePage from "../MoviePage/MoviePage";
 import Main from "../Main/Main.js";
-import moviePageSample from "../../moviePageSample";
 import { Switch, Link, Route } from "react-router-dom";
 import NoMatch from "../NoMatch";
-import Form from "../Form/Form";
 import Header from "../Header/Header";
 import "./Media-queries.css";
 
@@ -19,7 +17,6 @@ class App extends Component {
       error: "",
       isLoading: true,
       selectedMovie: null,
-      movieVideo: null,
     };
   }
 
@@ -48,21 +45,18 @@ class App extends Component {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ selectedMovie: data });
-      });
-  };
-
-  getMovieVideo = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({ movieVideo: data });
+        this.setState({
+          selectedMovie: data,
+          main: false,
+        });
       });
   };
 
   resetSelected = () => {
-    this.setState({ selectedMovie: null });
+    this.setState({
+      selectedMovie: null,
+      main: true,
+    });
   };
 
   searchMovies = (e) => {
@@ -70,7 +64,6 @@ class App extends Component {
     const filteredMovies = this.state.allMovies.filter((movie) =>
       movie.title.toLowerCase().includes(value.toLowerCase())
     );
-    console.log(filteredMovies);
     this.setState({ filteredMovies: [...filteredMovies] });
   };
 
@@ -82,7 +75,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header search={this.searchMovies} resetSearch={this.resetSearch} />
+        {this.state.main && (
+          <Header search={this.searchMovies} resetSearch={this.resetSearch} />
+        )}
+
         <Switch>
           <Route
             exact
@@ -91,10 +87,7 @@ class App extends Component {
               <Main
                 movies={this.state.filteredMovies}
                 select={this.selectMovie}
-                videoMethod={this.getMovieVideo}
               />
-              // this.state.filteredMovies !== [] ? <Main movies={this.state.filteredMovies} select={this.selectMovie} /> :
-              // <Main movies={this.state.allMovies} select={this.selectMovie} />
             )}
           />
           <Route
@@ -110,7 +103,10 @@ class App extends Component {
                   >
                     Go Back
                   </Link>
-                  <MoviePage movie={this.state.selectedMovie} movieTrailer={this.state.movieVideo}/>
+                  <MoviePage
+                    movie={this.state.selectedMovie}
+                    movieTrailer={this.state.movieVideo}
+                  />
                 </div>
               );
             }}

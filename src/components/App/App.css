@@ -25,7 +25,13 @@ a {
 .no-match-text {
   text-align: center;
   font-size: 2rem;
-  margin: 20vh;
+  margin: 20vh 0 0;
+}
+
+.go-back-text {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2rem;
 }
 
 .error-path-text {
@@ -40,7 +46,7 @@ a {
   display: inline-block;
   background-color: #2c3b49;
   color: #fff;
-  margin: 20px 0 20px 6.4%;
+  margin: 80px 0 0 6.4%;
   border-radius: 10px;
   transition: all ease-in-out 0.3s;
 }
