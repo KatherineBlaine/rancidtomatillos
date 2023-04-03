@@ -18,7 +18,7 @@ class App extends Component {
       isLoading: true,
       selectedMovie: null,
     };
-  }
+  };
 
   componentDidMount = () => {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
@@ -41,10 +41,6 @@ class App extends Component {
       });
   };
 
-  componentDidUpdate = () => {
-    console.log(this.state.selectedMovie)
-  }
-
   selectMovie = (id) => {
     console.log('movie is selected')
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
@@ -54,7 +50,7 @@ class App extends Component {
           selectedMovie: data,
           main: false,
         });
-      });
+    });
   };
 
   resetSelected = () => {
@@ -70,20 +66,24 @@ class App extends Component {
       movie.title.toLowerCase().includes(value.toLowerCase())
     );
     this.setState({ filteredMovies: [...filteredMovies] });
+
+    if (filteredMovies.length === 0) {
+      this.setState({ error: 'No results match your search'});
+    } else {
+      this.setState({ error: ''});
+    }
   };
 
   resetSearch = () => {
     document.getElementById("search-field").value = "";
+    this.setState({ error: ''});
     this.componentDidMount();
   };
 
   render() {
     return (
       <div>
-        {this.state.main && (
-          <Header search={this.searchMovies} resetSearch={this.resetSearch} />
-        )}
-
+        <Header search={this.searchMovies} resetSearch={this.resetSearch} page={this.state.main}/>
         <Switch>
           <Route
             exact
@@ -92,6 +92,7 @@ class App extends Component {
               <Main
                 movies={this.state.filteredMovies}
                 select={this.selectMovie}
+                loading={this.state.isLoading}
               />
             )}
           />

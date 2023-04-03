@@ -1,11 +1,11 @@
 import "./Header.css";
 import Form from "../Form/Form";
 
-const Header = ({ search, resetSearch }) => {
+const Header = ({ search, resetSearch, page }) => {
   return (
     <div className="header">
       <h1>Rancid Tomatillos</h1>
-      <Form search={search} resetSearch={resetSearch} />
+      {page && <Form search={search} resetSearch={resetSearch} />}
     </div>
   );
 };
