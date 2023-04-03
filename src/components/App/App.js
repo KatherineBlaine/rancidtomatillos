@@ -43,31 +43,24 @@ class App extends Component {
       });
   };
 
+  componentDidUpdate = () => {
+    console.log(this.state.selectedMovie)
+  }
+
   selectMovie = (id) => {
+    console.log('movie is selected')
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        // console.log(data)
         this.setState({ selectedMovie: data });
-        console.log("Selected movie", this.state.selectedMovie)
       })
-      .then((id) => {
-        this.getMovieVideo(id)
-      })
+      // console.log("Selected movie", this.state.selectedMovie)
   };
-
-  // getMovieVideo = (id) => {
-  //   fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       this.setState({ movieVideo: data });
-  //     });
-  // };
 
   resetSelected = () => {
     this.setState({ selectedMovie: null });
-    // console.log('Hello')
+    console.log('selected is reset')
   };
 
   searchMovies = (e) => {
@@ -96,10 +89,7 @@ class App extends Component {
               <Main
                 movies={this.state.filteredMovies}
                 select={this.selectMovie}
-                // videoMethod={this.getMovieVideo}
               />
-              // this.state.filteredMovies !== [] ? <Main movies={this.state.filteredMovies} select={this.selectMovie} /> :
-              // <Main movies={this.state.allMovies} select={this.selectMovie} />
             )}
           />
           <Route

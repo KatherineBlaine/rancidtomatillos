@@ -11,7 +11,6 @@ const Movie = ({ posterImg, title, rating, id, selectMovie }) => {
         id={id}
         onClick={() => {
           selectMovie(id);
-          // selectVideo(id);
         }}
       >
         <img className="poster-img" id={`${title} img`} src={posterImg} alt="Movie poster"></img>
