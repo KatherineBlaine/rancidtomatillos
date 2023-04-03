@@ -62,7 +62,6 @@ describe('Main page', () => {
         .should('be.visible')
         .contains('4')
 
-
       cy.get('[href="/934641"]')
         .should('be.visible')
       cy.get('#Black\\ Adam\\ img')
@@ -73,7 +72,32 @@ describe('Main page', () => {
       cy.get('#The\\ Minute\\ You\\ Wake\\ Up\\ Dead\\ rating')
         .should('be.visible')
         .contains('5')
-      
+    })
+
+    it('Should be able to filter displayed movies based on a user\'s search', () => {
+      cy.get('.movie-container').children().should('have.length', 5)
+      cy.get('#search-field').type('Black')
+      cy.get('.movie-container').children().should('have.length', 2)
+
+      cy.get('[href="/436270"]').should('be.visible')
+      cy.get('[href="/505642"]').should('be.visible')
+
+      cy.get('[href="/724495"]').should('not.exist')
+      cy.get('[href="/1013860"]').should('not.exist')
+      cy.get('[href="/934641"]').should('not.exist')
+    })
+
+    it('Should be able to reset a user\'s search to show all movies again and clear the text in the search field', () => {
+      cy.get('.movie-container').children().should('have.length', 5)
+      cy.get('#search-field').type('Woman')
+      cy.get('.movie-container').children().should('have.length', 1)
+
+      cy.get('[href="/724495"]').should('be.visible')
+
+      cy.get('button').click()
+      cy.get('#search-field').should('not.have.value')
+
+      cy.get('.movie-container').children().should('have.length', 5)
     })
 });
 
