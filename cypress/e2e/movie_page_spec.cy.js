@@ -19,7 +19,7 @@ describe('Movie Info Page', () => {
 
   it('Should contain all relevant movie data DOM elements within the movie page', () => {
     cy.get('img').should('be.visible')
-    const pageElements = ['h2', 'h3', '.tagline', '.right-content > :nth-child(2) > :nth-child(3)', '.right-content > :nth-child(3) > :nth-child(1)', ':nth-child(3) > :nth-child(5)', '.detail-cards-container > :nth-child(1)', '.detail-cards-container > :nth-child(2)', '.detail-cards-container > :nth-child(3)' ]
+    const pageElements = ['h2', '.tagline', '.right-content > :nth-child(2) > :nth-child(2)', '.right-content > :nth-child(3) > :nth-child(1)', ':nth-child(3) > :nth-child(5)', '.detail-cards-container > :nth-child(1)', '.detail-cards-container > :nth-child(2)', '.detail-cards-container > :nth-child(3)' ]
     pageElements.forEach(element => {
       cy.get(element)
         .should('be.visible')
@@ -29,9 +29,8 @@ describe('Movie Info Page', () => {
   it('Should show data about the specific movie selected by the user', () => {
     cy.get('img').should('have.attr', 'src').should('include', "https://image.tmdb.org/t/p/original//pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg")
     cy.get('h2').contains('Black Adam')
-    cy.get('h3').contains('DESCRIPTION')
     cy.get('.tagline').contains('The world needed a hero. It got Black Adam.')
-    cy.get('.right-content > :nth-child(2) > :nth-child(3)').contains("Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.")
+    cy.get('.right-content > :nth-child(2) > :nth-child(2)').contains("Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.")
   
   
     const subheadings = ['Release:', 'Length', 'Genres']
@@ -52,8 +51,8 @@ describe('Movie Info Page', () => {
       .contains(stat)
     })
   
-    cy.get('.detail-cards-container > :nth-child(1)').contains(200000000)
-    cy.get('.detail-cards-container > :nth-child(2)').contains(384571691)
+    cy.get('.detail-cards-container > :nth-child(1)').contains('$200,000,000')
+    cy.get('.detail-cards-container > :nth-child(2)').contains('$384,571,691')
     cy.get('.detail-cards-container > :nth-child(3)').contains(4)
   })
 

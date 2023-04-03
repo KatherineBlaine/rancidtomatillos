@@ -42,20 +42,20 @@ describe('Main page', () => {
 
       cy.get('[href="/1013860"]')
         .should('be.visible')
-        cy.get('#R\\.I\\.P\\.D\\.\\ 2\\:\\ Rise\\ of\\ the\\ Damned\\ img')
+      cy.get('#R\\.I\\.P\\.D\\.\\ 2\\:\\ Rise\\ of\\ the\\ Damned\\ img')
         .should('have.attr', 'src').should('include', "https://image.tmdb.org/t/p/original//g4yJTzMtOBUTAR2Qnmj8TYIcFVq.jpg")
       cy.get('#R\\.I\\.P\\.D\\.\\ 2\\:\\ Rise\\ of\\ the\\ Damned\\ title')
         .should('be.visible')
         .contains("R.I.P.D. 2: Rise of the Damned")
       cy.get('#R\\.I\\.P\\.D\\.\\ 2\\:\\ Rise\\ of\\ the\\ Damned\\ rating')
         .should('be.visible')
-        .contains('7')
+        .contains('7');
 
       cy.get('[href="/505642"]')
         .should('be.visible')
       cy.get('#Black\\ Panther\\:\\ Wakanda\\ Forever\\ img')
         .should('have.attr', 'src').should('include', "https://image.tmdb.org/t/p/original//ps2oKfhY6DL3alynlSqY97gHSsg.jpg")
-        cy.get('#Black\\ Panther\\:\\ Wakanda\\ Forever\\ title')
+      cy.get('#Black\\ Panther\\:\\ Wakanda\\ Forever\\ title')
         .should('be.visible')
         .contains("Black Panther: Wakanda Forever")
       cy.get('#Black\\ Panther\\:\\ Wakanda\\ Forever\\ rating')
