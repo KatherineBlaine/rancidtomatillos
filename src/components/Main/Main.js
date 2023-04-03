@@ -14,7 +14,6 @@ const Main = ({ movies, select }) => {
           key={movie.id}
           id={movie.id}
           selectMovie={select}
-          // selectVideo={videoMethod}
         />
       );
     });

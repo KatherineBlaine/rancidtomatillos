@@ -5,19 +5,20 @@ import { Link } from "react-router-dom";
 
 const Movie = ({ posterImg, title, rating, id, selectMovie }) => {
   return (
-    <Link key={id} to={`/${id}`}>
-      <div
-        className="movie-card"
-        id={id}
-        onClick={() => {
-          selectMovie(id);
-        }}
-      >
-        <img className="poster-img" id={`${title} img`} src={posterImg} alt="Movie poster"></img>
-        <h3 className="movie-title" id={`${title} title`}>{title}</h3>
-        <p id={`${title} rating`}>Rating: {rating}</p>
-      </div>
-    </Link>
+    <div className="movie-card">
+      <Link key={id} to={`/${id}`}>
+        <div
+          id={id}
+          onClick={() => {
+            selectMovie(id);
+          }}
+        >
+          <img className="poster-img" src={posterImg} alt="Movie poster"></img>
+          <h2 className="movie-title">{title}</h2>
+          <p>Rating: {rating}</p>
+        </div>
+      </Link>
+    </div>
   );
 };
 

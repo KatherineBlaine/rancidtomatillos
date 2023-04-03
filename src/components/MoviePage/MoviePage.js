@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./MoviePage.css";
-import { Link, useParams } from "react-router-dom";
+import NoMatch from "../NoMatch";
 
 const MoviePage = ({ movie }) => {
-  console.log(movie)
   if (movie !== null) {
     return (
       <main>
@@ -15,8 +14,7 @@ const MoviePage = ({ movie }) => {
           <div className="right-content">
             <h2>{movie.movie.title}</h2>
             <div className="container">
-              <h3>DESCRIPTION</h3>
-              <p className="tagline">{movie.movie.tagline}</p>
+              <p className="tagline">"{movie.movie.tagline}"</p>
               <p>{movie.movie.overview}</p>
             </div>
 
@@ -31,11 +29,11 @@ const MoviePage = ({ movie }) => {
             <div className="detail-cards-container">
               <div className="detail-card">
                 <p>Budget</p>
-                <p>${movie.movie.budget} M</p>
+                <p>${movie.movie.budget.toLocaleString("en-US")}</p>
               </div>
               <div className="detail-card">
                 <p>Revenue</p>
-                <p>${movie.movie.revenue} M</p>
+                <p>${movie.movie.revenue.toLocaleString("en-US")}</p>
               </div>
               <div className="detail-card">
                 <p>Rating</p>
@@ -46,8 +44,15 @@ const MoviePage = ({ movie }) => {
         </div>
       </main>
     );
-  };
-}
+  } else {
+    return (
+      <>
+        <NoMatch />
+        <h2 className="go-back-text">Please go back.</h2>
+      </>
+    );
+  }
+};
 
 export default MoviePage;
 
