@@ -9,8 +9,11 @@ const Form = ({ search, resetSearch }) => {
         id="search-field"
         className="search-input"
         onChange={search}
+        placeholder="Search for movie..."
       ></input>
-       <button onClick={resetSearch}>Reset Search</button>
+      <button className="reset-search-btn" onClick={resetSearch}>
+        Reset Search
+      </button>
     </div>
   );
 };

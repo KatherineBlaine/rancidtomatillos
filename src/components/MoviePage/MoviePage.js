@@ -1,30 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./MoviePage.css";
-import { Link, useParams } from "react-router-dom";
+import NoMatch from "../NoMatch";
 
-const MoviePage = ({ movie, movieTrailer }) => {
+const MoviePage = ({ movie }) => {
   if (movie !== null) {
-    const filteredVideo = movieTrailer.videos.filter(
-      (movie) => movie.type === "Trailer"
-    )[0].key;
-    console.log("Filtered Video!!!!!", filteredVideo);
-
     return (
       <main>
-        <div className="trailer-container">
-          <iframe
-            className="movie-trailer"
-            title={movie.movie.title}
-            width="620"
-            height="420"
-            src={`https://www.youtube.com/embed/${
-              movieTrailer.videos.filter((movie) => movie.type === "Trailer")[0]
-                .key
-            }`}
-            alt="Movie trailer"
-          ></iframe>
-        </div>
         <div className="movie-page">
           <div className="left-content">
             <img src={movie.movie.poster_path} alt="Movie poster"></img>
@@ -32,8 +14,7 @@ const MoviePage = ({ movie, movieTrailer }) => {
           <div className="right-content">
             <h2>{movie.movie.title}</h2>
             <div className="container">
-              <h3>DESCRIPTION</h3>
-              <p className="tagline">{movie.movie.tagline}</p>
+              <p className="tagline">"{movie.movie.tagline}"</p>
               <p>{movie.movie.overview}</p>
             </div>
 
@@ -48,11 +29,11 @@ const MoviePage = ({ movie, movieTrailer }) => {
             <div className="detail-cards-container">
               <div className="detail-card">
                 <p>Budget</p>
-                <p>${movie.movie.budget} M</p>
+                <p>${movie.movie.budget.toLocaleString("en-US")}</p>
               </div>
               <div className="detail-card">
                 <p>Revenue</p>
-                <p>${movie.movie.revenue} M</p>
+                <p>${movie.movie.revenue.toLocaleString("en-US")}</p>
               </div>
               <div className="detail-card">
                 <p>Rating</p>
@@ -62,6 +43,13 @@ const MoviePage = ({ movie, movieTrailer }) => {
           </div>
         </div>
       </main>
+    );
+  } else {
+    return (
+      <>
+        <NoMatch />
+        <h2 className="go-back-text">Please go back.</h2>
+      </>
     );
   }
 };
