@@ -41,7 +41,12 @@ class App extends Component {
       });
   };
 
+  componentDidUpdate = () => {
+    console.log(this.state.selectedMovie)
+  }
+
   selectMovie = (id) => {
+    console.log('movie is selected')
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -103,10 +108,7 @@ class App extends Component {
                   >
                     Go Back
                   </Link>
-                  <MoviePage
-                    movie={this.state.selectedMovie}
-                    movieTrailer={this.state.movieVideo}
-                  />
+                  <MoviePage movie={this.state.selectedMovie}/>
                 </div>
               );
             }}
