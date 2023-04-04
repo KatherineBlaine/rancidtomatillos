@@ -29,7 +29,7 @@ Rancid Tomatillos was both of our first official projects using React, so there 
 We plan to continue working on our project moving forward, and hope to add trailers to our movie data page, fix some asynch rendering that gives page updates a bit of a lag, and deploy our project using Vercel!
 
 ### Preview of the App
-[Rancid Tomatillos](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODZkODJhOThmZjhiNmQ3NTJmZDE2MTcxYzU1ZTczYzEyNDI4Mzg2YiZjdD1n/EVeWiIHGehm0CBIIMS/giphy.gif)
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODZkODJhOThmZjhiNmQ3NTJmZDE2MTcxYzU1ZTczYzEyNDI4Mzg2YiZjdD1n/EVeWiIHGehm0CBIIMS/giphy.gif)
 
 ### Contributors 
 - Katherine Blaine [LinkedIn](https://www.linkedin.com/in/katherinekblaine/), [Github](https://github.com/KatherineBlaine)<br>
